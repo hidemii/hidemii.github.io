@@ -39,7 +39,7 @@
           num = nums.splice(Math.floor(Math.random() * nums.length), 1);
           document.getElementById('button_' + i).value = num[0];
         }
-        
+        board = document.getElementById('board');
       }
       function touched(n){
         var btn = document.getElementById('button_'+n);
