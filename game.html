@@ -35,6 +35,7 @@
         var nums;
         for (var i=0; i<8; i++){
           num = nums.splice(Math.floor(Math.rumdom() * nums.length), 1);
+          document.getElementById('button_' + i).value = num[0];
         }
       }
 </body>
