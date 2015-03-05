@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 h1{
-    font-family: “Century Gothic”;
+    font-family: “Dotum”;
     text-align: "center";
+    color: "white";
+    background-color: "aliceblue";
 }
