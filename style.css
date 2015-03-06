@@ -6,9 +6,10 @@ body {
   margin: 0 auto;
 }
 
-h1{
-    font-family: “Dotum”;
-    text-align: "center";
-    color: "#F0F8FF";
-    background-color: "#F0F8FF";
+h1 {
+  font-family: "ＭＳ Ｐゴシック","MS PGothic";
+  font-weight: 100; 
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #F0F8FF;
 }
