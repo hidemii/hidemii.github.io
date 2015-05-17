@@ -34,24 +34,24 @@ function colcalc() {
 
   //alert(times.length);
   for (i=0; i<times.length; i++) {
-    wa += time2int(times[i]);
-    //alert(i + "," +time2int(times[i]));
+    wa += time12int(times[i]);
+    //alert(i + "," +time12int(times[i]));
   }
 
-  //alert(wa +","+int2time(wa));
-  F.a2.value = int2time(wa);
+  //alert(wa +","+int12time(wa));
+  F.a12.value = int12time(wa);
 }
 
 
 /**
  * hh:mm:ss形式の時間を秒に直す
  */
-function time2int(str) {
-  t2itimes = str.split(":");
+function time12int(str) {
+  t12itimes = str.split(":");
   ti = 0;
-  L = t2itimes.length;
-  for (t2ij=0; t2ij<L; t2ij++) {
-    ti += t2itimes[t2ij] * Math.pow(60,L-t2ij-1);
+  L = t12itimes.length;
+  for (t12ij=0; t12ij<L; t12ij++) {
+    ti += t12itimes[t12ij] * Math.pow(60,L-t12ij-1);
   }
   return ti;
 }
@@ -60,7 +60,7 @@ function time2int(str) {
  * 秒をhh:mm:ss形式の時間に直す
  * intt	数値
  */
-function int2time(intt) {
+function int12time(intt) {
   hour = parseInt(intt / 3600);
   intt %= 3600;
   min = parseInt(intt / 60);
