@@ -1,56 +1,132 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-  </head>
-  <body>
-    <script>
-      function average(data)
-      {
-        var sum = 0;
-        for (i=0; i<data.length; i++) {
-          sum = sum + data[i];
-        }
-        return (sum / data.length);
-      }
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>時間の足し算</title>
+<meta name="keywords" content="時間,足し算,計算,ツール">
+<link href="../main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+<!--
+function calc() {
+  F = document.timek;
+  ti1 = time2int(F.t1.value);
+  ti2 = time2int(F.t2.value);
+  
+  wa = int2time(ti1+ti2);
+  F.a1.value = wa;
+}
 
-      /*
-      * 分散を求める
-      * 分散 ＝（（データ－平均値）の２乗）の総和 ÷ 個数
-      */
-      function variance(data)
-      {
-        // 平均値を求める
-        var ave = average(data);
-
-        var varia = 0;
-        for (i=0; i<data.length; i++) {
-          varia = varia + Math.pow(data[i] - ave, 2);
-        }
-        return (varia / data.length);
-      }
-
-      /*
-      * 標準偏差を求める
-      */
-      function standard_deviation(data)
-      {
-        // 分散を求める
-        var varia = variance(data);
-
-        // 分散の平方根
-        return Math.sqrt(varia);
-      }
-
-      data = new Array(-3, 13, 12, -9, 51, -7);
-
-      alert( "平均値　:　" + average(data) );            // 9.5
-      alert( "分散　　:　" + variance(data) );           // 418.583・・・
-      alert( "標準偏差:　" + standard_deviation(data) ); // 20.4593・・・
-
-    </script>
+function colcalc() {
+  F = document.timecol;
+  times = F.colarea.value.split("\n");
+  wa = 0;
 
 
-  </body>
+
+  //alert(times.length);
+  for (i=0; i<times.length; i++) {
+    wa += time2int(times[i]);
+    //alert(i + "," +time2int(times[i]));
+  }
+
+  //alert(wa +","+int2time(wa));
+  F.a2.value = int2time(wa);
+}
+
+
+/**
+ * hh:mm:ss形式の時間を秒に直す
+ */
+function time2int(str) {
+  t2itimes = str.split(":");
+  ti = 0;
+  L = t2itimes.length;
+  for (t2ij=0; t2ij<L; t2ij++) {
+    ti += t2itimes[t2ij] * Math.pow(60,L-t2ij-1);
+  }
+  return ti;
+}
+
+/**
+ * 秒をhh:mm:ss形式の時間に直す
+ * intt	数値
+ */
+function int2time(intt) {
+  hour = parseInt(intt / 3600);
+  intt %= 3600;
+  min = parseInt(intt / 60);
+  sec = intt % 60;
+
+  // 数値が1桁の場合は頭に0をつける
+  if (hour < 10) hour = "0" + hour;
+  if (min < 10) min = "0" + min;
+  if (sec < 10) sec = "0" + sec;
+  
+  return hour +":"+ min +":"+sec;
+}
+
+
+//-->
+</script>
+</head>
+<body>
+<div id="myBody" class="center">
+
+<h1>時間の足し算</h1>
+
+<p>
+hh:mm:ss形式の時間の足し算を行います。
+</p><p>
+○例　　
+5:32 + 1:06:27 = 01:11:59
+</p>
+
+<h2>２つの時間の足し算</h2>
+
+<form name="timek">
+<input type="text" value="" name="t1" />
++
+<input type="text" value="" name="t2" />
+<input type="button" onclick="calc();" value="計算" /><br />
+=
+<input type="text" value="" name="a1" />
+
+</form>
+
+
+<h2>複数の時間の足し算</h2>
+
+<form name="timecol">
+
+<textarea name="colarea" cols="40" rows="6">
+</textarea>
+<br />
+<input type="button" onclick="colcalc();" value="計算" />
+＝<input type="text" value="" name="a2" />
+</form>
+
+<p>
+※足したい時間を順番に書いていってください。
+</p><p>
+○例
+</p>
+<table border="1" align="center" cellpadding="10">
+<tr><td align="left">
+5:32<br />
+1:06:27<br />
+10:27<br />
+・・・
+</td></tr>
+</table>
+
+
+<hr />
+
+
+</div>
+</body>
 </html>
