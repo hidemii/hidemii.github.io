@@ -67,11 +67,11 @@ function int12time(intt) {
   sec = intt % 60;
 
   // 数値が1桁の場合は頭に0をつける
-  if (hour < 10) hour = "0" + hour;
   if (min < 10) min = "0" + min;
   if (sec < 10) sec = "0" + sec;
+  if (mSec < 10) mSec = "0" + mSec;
   
-  return hour +":"+ min +":"+sec;
+  return min +":"+ sec +":"+mSec;
 }
 
 
