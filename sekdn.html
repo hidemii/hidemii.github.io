@@ -51,6 +51,7 @@ function time12int(str) {
   ti = 0;
   L = t12itimes.length;
   for (t12ij=0; t12ij<L; t12ij++) {
+    ti(sec)+= mSec * 1000;
     ti += t12itimes[t12ij] * Math.pow(60,L-t12ij-1);
   }
   return ti;
