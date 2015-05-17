@@ -8,19 +8,20 @@
 <!--
 function calc() {
   F = document.timek;
-  ti1 = time2int(F.t1.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
-  ti2 = time2int(F.t2.value);
+  ti1 = time12int(F.t1.value);
+  ti2 = time12int(F.t2.value);
+  ti2 = time12int(F.t3.value);
+  ti2 = time12int(F.t4.value);
+  ti2 = time12int(F.t5.value);
+  ti2 = time12int(F.t6.value);
+  ti2 = time12int(F.t7.value);
+  ti2 = time12int(F.t8.value);
+  ti2 = time12int(F.t9.value);
+  ti2 = time12int(F.t10.value);
+  ti2 = time12int(F.t11.value);
+  ti2 = time12int(F.t12.value);
   
-  wa = int2time(ti1+ti2);
+  wa = int12time(ti1+ti2+ti3+ti4+ti5+ti6+ti7+ti8+ti9+ti10+ti11+ti12);
   F.a1.value = wa;
 }
 
@@ -115,7 +116,7 @@ please input data(hh:mm:ss)
 <input type="text" value="" name="t11" /><br>
 +
 <input type="text" value="" name="t12" />
-<input type="button" onclick="colcalc();" value="result" /><br />
+<input type="button" onclick="calc();" value="result" /><br />
 =
 <input type="text" value="" name="a1" />
 
