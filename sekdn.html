@@ -1,27 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>time</title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>時間の足し算</title>
+<meta name="keywords" content="時間,足し算,計算,ツール">
+<link href="../main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 <!--
 function calc() {
   F = document.timek;
-  ti1 = time12int(F.t1.value);
-  ti2 = time12int(F.t2.value);
-  ti3 = time12int(F.t3.value);
-  ti4 = time12int(F.t4.value);
-  ti5 = time12int(F.t5.value);
-  ti6 = time12int(F.t6.value);
-  ti7 = time12int(F.t7.value);
-  ti8 = time12int(F.t8.value);
-  ti9 = time12int(F.t9.value);
-  ti10 = time12int(F.t10.value);
-  ti11 = time12int(F.t11.value);
-  ti12 = time12int(F.t12.value);
+  ti1 = time2int(F.t1.value);
+  ti2 = time2int(F.t2.value);
   
-  wa = int12time(ti1+ti2+ti3+ti4+ti5+ti6+ti7+ti8+ti9+ti10+ti11+ti12);
+  wa = int2time(ti1+ti2);
   F.a1.value = wa;
 }
 
@@ -34,25 +29,24 @@ function colcalc() {
 
   //alert(times.length);
   for (i=0; i<times.length; i++) {
-    wa += time12int(times[i]);
-    //alert(i + "," +time12int(times[i]));
+    wa += time2int(times[i]);
+    //alert(i + "," +time2int(times[i]));
   }
 
-  //alert(wa +","+int12time(wa));
-  F.a12.value = int12time(wa);
+  //alert(wa +","+int2time(wa));
+  F.a2.value = int2time(wa);
 }
 
 
 /**
  * hh:mm:ss形式の時間を秒に直す
  */
-function time12int(str) {
-  t12itimes = str.split(":");
+function time2int(str) {
+  t2itimes = str.split(":");
   ti = 0;
-  L = t12itimes.length;
-  for (t12ij=0; t12ij<L; t12ij++) {
-    ti(sec)+= mSec * 1000;
-    ti += t12itimes[t12ij] * Math.pow(60,L-t12ij-1);
+  L = t2itimes.length;
+  for (t2ij=0; t2ij<L; t2ij++) {
+    ti += t2itimes[t2ij] * Math.pow(60,L-t2ij-1);
   }
   return ti;
 }
@@ -61,18 +55,18 @@ function time12int(str) {
  * 秒をhh:mm:ss形式の時間に直す
  * intt	数値
  */
-function int12time(intt) {
+function int2time(intt) {
   hour = parseInt(intt / 3600);
   intt %= 3600;
   min = parseInt(intt / 60);
   sec = intt % 60;
 
   // 数値が1桁の場合は頭に0をつける
+  if (hour < 10) hour = "0" + hour;
   if (min < 10) min = "0" + min;
   if (sec < 10) sec = "0" + sec;
-  if (mSec < 10) mSec = "0" + mSec;
   
-  return min +":"+ sec +":"+mSec;
+  return hour +":"+ min +":"+sec;
 }
 
 
@@ -82,71 +76,27 @@ function int12time(intt) {
 <body>
 <div id="myBody" class="center">
 
-<h1>タイム</h1>
+<h1>時間の足し算</h1>
 
-<p1>
-please input data(hh:mm:ss)
-</p1>
-<p2>
-＜ex.5:32 + 1:06:27 = 01:11:59＞　　
-</p2>
+<p>
+hh:mm:ss形式の時間の足し算を行います。
+</p><p>
+○例　　
+5:32 + 1:06:27 = 01:11:59
+</p>
 
-<h2>total</h2>
+<h2>２つの時間の足し算</h2>
 
 <form name="timek">
-<input type="text" value="" name="t1" /><br>
-+
-<input type="text" value="" name="t2" /><br>
-+
-<input type="text" value="" name="t3" /><br>
-+
-<input type="text" value="" name="t4" /><br>
-+
-<input type="text" value="" name="t5" /><br>
-+
-<input type="text" value="" name="t6" /><br>
-+
-<input type="text" value="" name="t7" /><br>
-+
-<input type="text" value="" name="t8" /><br>
-+
-<input type="text" value="" name="t9" /><br>
-+
-<input type="text" value="" name="t10" /><br>
-+
-<input type="text" value="" name="t11" /><br>
-+
-<input type="text" value="" name="t12" />
-<input type="button" onclick="calc();" value="result" /><br />
+<input type="text" value="" name="t1" />
+-
+<input type="text" value="" name="t2" />
+<input type="button" onclick="calc();" value="計算" /><br />
 =
 <input type="text" value="" name="a1" />
 
 </form>
 
-
-<h2>複数の時間の足し算</h2>
-
-<form name="timecol">
-
-<textarea name="colarea" cols="40" rows="6">
-</textarea>
-<br />
-<input type="button" onclick="colcalc();" value="result" />
-＝<input type="text" value="" name="a2" />
-</form>
-
-<p>
-※足したい時間を順番に書いていってください。
-</p><p>
-○例
-</p>
-<table border="1" align="center" cellpadding="10">
-<tr><td align="left">
-5:32<br />
-1:06:27<br />
-10:27<br />
-・・・
-</td></tr>
 </table>
 
 
@@ -156,3 +106,5 @@ please input data(hh:mm:ss)
 </div>
 </body>
 </html>
+
+
